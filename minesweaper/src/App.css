@@ -7,79 +7,78 @@
   background: radial-gradient(circle, rgb(28, 25, 74) 0%, rgba(0,0,113,1) 34%, rgba(22,21,21,1) 100%);
   padding: 20px;
   color: white;
-  font-family: 'Arial', sans-serif; /* Smooth and modern font */
+  font-family: 'Arial', sans-serif; 
 }
 
-/* Styling for the grid of cells */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(5, 60px); /* Slightly larger cells for better visibility */
+  grid-template-columns: repeat(5, 60px); 
   grid-template-rows: repeat(5, 60px);
-  gap: 6px; /* Consistent spacing between cells */
+  gap: 6px; 
 }
 
-/* Individual cell styling */
 .cell {
   width: 60px;
   height: 60px;
-  border: 1px solid rgba(255, 255, 255, 0.4); /* Softer white border to blend better */
+  border: 1px solid rgba(255, 255, 255, 0.4); 
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  background-color: rgba(44, 39, 126, 0.2); /* Subtle blend of the purple background */
-  color: #fff; /* White text for better contrast */
+  background-color: rgba(44, 39, 126, 0.2); 
+  color: #fff; 
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
+  transition: background-color 0.3s ease, transform 0.2s ease; 
 }
 
 .cell:hover {
-  background-color: rgba(44, 39, 126, 0.6); /* Darker purple on hover */
-  transform: scale(1.1); /* Slight scaling for a nice effect */
+  background-color: rgba(44, 39, 126, 0.6); 
+  transform: scale(1.1); 
 }
 
-/* Styling for revealed cells */
+
 .cell[aria-revealed='true'] {
-  background-color: rgba(189, 8, 150, 0.7); /* Reveal darker blue background for revealed cells */
-  color: #f2f2f2; /* Light text for contrast on revealed cells */
+  background-color: rgba(189, 8, 150, 0.7); 
+  color: #f2f2f2;
 }
 
-/* Game status messages */
+
 .game-status {
   margin-bottom: 25px;
   font-size: 34px;
   font-weight: bold;
-  color: #ff0000; /* Bright yellow for clear status messaging */
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); /* Subtle shadow for emphasis */
+  color: #ff0000; 
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); 
 }
 
-/* Play Again button */
+
 .play-again-btn {
   margin-top: 30px;
   padding: 12px 25px;
   font-size: 18px;
-  background-color: #00aaff; /* Bright blue for contrast */
+  background-color: #00aaff;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover transition */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); 
+  transition: background-color 0.3s ease, transform 0.2s ease; 
 }
 
 .play-again-btn:hover {
-  background-color: #007acc; /* Darker blue on hover */
-  transform: scale(1.05); /* Slight scaling on hover for a polished feel */
+  background-color: #007acc; 
+  transform: scale(1.05); 
 }
 
 
-/* Styling for mine cells */
+
 .cell.mine {
-  background-color: red; /* Röd bakgrund för att indikera mina */
+  background-color: red; 
   color: white;
   font-size: 24px;
 }
 
 .cell.mine:hover {
-  background-color: darkred; /* Mörkare röd när musen hovrar */
+  background-color: darkred;
 }

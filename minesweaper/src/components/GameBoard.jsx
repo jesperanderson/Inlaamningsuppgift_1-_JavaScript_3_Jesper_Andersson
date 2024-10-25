@@ -1,49 +1,46 @@
 import React, { Component } from 'react';
 import GameCells from './GameCells';
-import { createBoard } from '../Utils';
+import createBoard from '../Utils';
 
 class GameBoard extends Component {
   constructor(props) {
     super(props);
+    const boardArr = createBoard(25, 7); // Skapar ett 5x5 bräde med 7 minor
+    console.log("CONSTRUCTOR2", boardArr.map((cell) => { return {...cell}}));
     this.state = {
-      board: createBoard(5, 7),  // Tar emot argument från Utils.js - 5x5 grid med 7 minor
-      gameOver: false, // En boolean som indikerar om spelet är förlorat (om spelaren klickat på en mina).
-      gameWon: false, // En boolean som indikerar om spelet är vunnet (alla icke-min-celler är avslöjade).
+      board: boardArr, // Sätter startbrädet i state
+      gameOver: false, // Indikerar om spelet är förlorat
+      gameWon: false, // Indikerar om spelet är vunnet
     };
+    console.log("STATE", this.state);
   }
 
   handleClick = (index) => {
     const { board, gameOver } = this.state;
-    if (gameOver || board[index].visible) return;
-  
+    if (gameOver || board[index].visible) return; // Avbryter om spelet är över eller cellen redan är klickad
+
     if (board[index].hasMine) {
-      board[index].visible = true;       // Markera cellen som synlig
-      board[index].revealed = true;      // Markera cellen som avslöjad
-      this.setState({ board, gameOver: true });  // Sätt gameOver till true om det är en mina
+      board[index].visible = true; // Markera cellen som synlig om den är en mina
+      this.setState({ board, gameOver: true }); // Sätt spelet som över
     } else {
-      board[index].visible = true;
-      this.checkWin();
+      board[index].visible = true; // Markera cellen som synlig om den inte är en mina
+      this.checkWin(); // Kontrollera om spelaren har vunnit
     }
-  
+
     this.setState({ board });
   };
-  
-  
 
-    // Här kontrolleras det om alla celler som inte innehåller minor har blivit synliga. 
-    // Om så är fallet, sätts 'gameWon' till true.
   checkWin = () => {
     const { board } = this.state;
     const allCellsRevealed = board.every(cell => cell.visible || cell.hasMine);
     if (allCellsRevealed) {
-      this.setState({ gameWon: true });
+      this.setState({ gameWon: true }); // Sätt spelet som vunnet om alla icke-min-celler är avslöjade
     }
   };
 
-  // Reset och genererar en ny spelplan 
   resetGame = () => {
     this.setState({
-      board: createBoard(5, 7), 
+      board: createBoard(25, 7), // Återställ spelet
       gameOver: false,
       gameWon: false,
     });
@@ -52,17 +49,14 @@ class GameBoard extends Component {
   render() {
     const { board, gameOver, gameWon } = this.state;
 
-    // Genererar text samt knapp för att indikera att spelet är slut
-    // key är en prop som hjälper till att hålla reda på varje enskild cell och renderingen.
-
     return (
       <div className="game-board">
         {gameOver && <div className="game-status">Game Over, You hit a mine!</div>}
         {gameWon && <div className="game-status">Congratulations, You won!</div>}
 
         <div className="grid">
-          {board.map(cell => (
-            <GameCells key={cell.index} cell={cell} onClick={this.handleClick} />
+          {board.map((cell, index) => (
+            <GameCells key={index} cell={cell} onClick={(evt) => this.handleClick(index)} />
           ))}
         </div>
 
