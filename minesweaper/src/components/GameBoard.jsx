@@ -56,7 +56,7 @@ class GameBoard extends Component {
 
         <div className="grid">
           {board.map((cell, index) => (
-            <GameCells key={index} cell={cell} onClick={(evt) => this.handleClick(index)} />
+            <GameCells key={index} cell={cell} onClick={() => this.handleClick(index)} />
           ))}
         </div>
 
